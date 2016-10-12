@@ -3,26 +3,74 @@ package fr.glouglouwine.domain;
 import java.time.LocalDateTime;
 
 public class Bottle {
-	public Bottle(long bottleId, String ownerId, GrapeTypes grapeType, String domain, String year) {
+	
+	public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, String year) {
 		super();
 		this.bottleId = bottleId;
-		this.ownerId = ownerId;
+		this.owner = owner;
 		this.grapeType = grapeType;
 		this.domain = domain;
 		this.year = year;
-		this.quantity = 1.0;
+		this.quantity = 100;
 	}
+	
 	private long bottleId;
-	private String ownerId;
+	private String owner;
 	private GrapeTypes grapeType;
 	private String domain;
 	private String year;
-	private double quantity;
+	private int quantity;
 	private LocalDateTime openingDate;
+	
+	public long getBottleId() {
+		return bottleId;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public GrapeTypes getGrapeType() {
+		return grapeType;
+	}
+
+	public String getDomain() {
+		return domain;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public LocalDateTime getOpeningDate() {
+		return openingDate;
+	}
+
+	public LocalDateTime getFinishingDate() {
+		return finishingDate;
+	}
 	private LocalDateTime finishingDate;
 	
-	public void drink(double quantity,LocalDateTime dateTime){
-		
+	public void drink(int quantity,LocalDateTime dateTime){
+		if(quantity<0){
+			throw new IllegalArgumentException("You can not drink a negative quantity of the bottle. Maybe you mean you refilled it");
+		}
+		if(this.quantity-quantity<0){
+			throw new IllegalArgumentException("You can not drink more than 100% of the bottle");
+		}
+		if(openingDate==null){
+			openingDate=dateTime;
+		}else if(openingDate.isAfter(dateTime)){
+			throw new IllegalArgumentException("You can not have drinked your bottle before his opening");
+		}
+		this.quantity=this.quantity-quantity;
+		if(this.quantity==0){
+			finishingDate=dateTime;
+		}
 	}
 	
 }
