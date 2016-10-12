@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 public class Bottle {
 
+    public Bottle() {
+    }
+
     public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, String year) {
         this.bottleId = bottleId;
         this.owner = owner;
