@@ -33,7 +33,7 @@ public class BottleTest {
         Assert.assertEquals(drinkOpenDate, bottle.getOpeningDate());
         Assert.assertEquals(60, bottle.getPercentage(), 0);
 
-        LocalDateTime drinkCloseDate = LocalDateTime.now().minusHours(2);
+        LocalDateTime drinkCloseDate = drinkOpenDate;
         bottle.drink(60, drinkOpenDate);
         //Assert
         Assert.assertEquals(drinkCloseDate, bottle.getFinishingDate());
