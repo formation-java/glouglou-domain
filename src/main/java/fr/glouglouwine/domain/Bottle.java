@@ -4,37 +4,60 @@ import java.time.LocalDateTime;
 
 public class Bottle {
 
+    private long bottleId;
+    private String owner;
+    private GrapeTypes grapeType;
+    private String domain;
+    private int year;
+    // TODO percentage ?
+    private int percentage;
+    private LocalDateTime openingDate;
+    private LocalDateTime finishingDate;
+
+    // is for serialization
     public Bottle() {
     }
 
-    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, String year) {
+    // is the "functional" constructor
+    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, int year) {
         this.bottleId = bottleId;
         this.owner = owner;
         this.grapeType = grapeType;
         this.domain = domain;
         this.year = year;
-        this.quantity = 100;
+        this.percentage = 100;
     }
 
-    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, String year, int quantity,
+    // is for instanciation from existing entry
+    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, int year, int percentage,
                   LocalDateTime openingDate, LocalDateTime finishingDate) {
         this.bottleId = bottleId;
         this.owner = owner;
         this.grapeType = grapeType;
         this.domain = domain;
         this.year = year;
-        this.quantity = quantity;
+        this.percentage = percentage;
         this.openingDate = openingDate;
         this.finishingDate = finishingDate;
     }
 
-    private long bottleId;
-    private String owner;
-    private GrapeTypes grapeType;
-    private String domain;
-    private String year;
-    private int quantity;
-    private LocalDateTime openingDate;
+    public void drink(int quantity, LocalDateTime dateTime) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("You can not drink a null or negative percentage of the bottle. Maybe you mean you refilled it");
+        }
+        if (this.percentage - quantity < 0) {
+            throw new IllegalArgumentException("You can not drink more than 100% of the bottle");
+        }
+        if (openingDate == null) {
+            openingDate = dateTime;
+        } else if (openingDate.isAfter(dateTime)) {
+            throw new IllegalArgumentException("You can not have drinked your bottle before his opening");
+        }
+        this.percentage = this.percentage - quantity;
+        if (this.percentage == 0) {
+            finishingDate = dateTime;
+        }
+    }
 
     public long getBottleId() {
         return bottleId;
@@ -52,12 +75,12 @@ public class Bottle {
         return domain;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public double getPercentage() {
+        return percentage;
     }
 
     public LocalDateTime getOpeningDate() {
@@ -66,26 +89,6 @@ public class Bottle {
 
     public LocalDateTime getFinishingDate() {
         return finishingDate;
-    }
-
-    private LocalDateTime finishingDate;
-
-    public void drink(int quantity, LocalDateTime dateTime) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("You can not drink a negative quantity of the bottle. Maybe you mean you refilled it");
-        }
-        if (this.quantity - quantity < 0) {
-            throw new IllegalArgumentException("You can not drink more than 100% of the bottle");
-        }
-        if (openingDate == null) {
-            openingDate = dateTime;
-        } else if (openingDate.isAfter(dateTime)) {
-            throw new IllegalArgumentException("You can not have drinked your bottle before his opening");
-        }
-        this.quantity = this.quantity - quantity;
-        if (this.quantity == 0) {
-            finishingDate = dateTime;
-        }
     }
 
 }

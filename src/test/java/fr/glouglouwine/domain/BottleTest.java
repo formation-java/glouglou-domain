@@ -12,7 +12,7 @@ public class BottleTest {
 		//Setup
 		Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain","year");
 		//Test
-		Assert.assertEquals(100, bottle.getQuantity(),0);
+		Assert.assertEquals(100, bottle.getPercentage(),0);
 	}
 	
 	@Test
@@ -25,20 +25,20 @@ public class BottleTest {
 		//Assert
 		Assert.assertEquals(null, bottle.getFinishingDate());
 		Assert.assertEquals(drinkOpenDate, bottle.getOpeningDate());
-		Assert.assertEquals(80, bottle.getQuantity(),0);
+		Assert.assertEquals(80, bottle.getPercentage(),0);
 		
 		bottle.drink(20, LocalDateTime.now().minusHours(1));
 		//Assert
 		Assert.assertEquals(null, bottle.getFinishingDate());
 		Assert.assertEquals(drinkOpenDate, bottle.getOpeningDate());
-		Assert.assertEquals(60, bottle.getQuantity(),0);
+		Assert.assertEquals(60, bottle.getPercentage(),0);
 		
 		LocalDateTime drinkCloseDate = LocalDateTime.now().minusHours(2);
 		bottle.drink(60, drinkOpenDate);
 		//Assert
 		Assert.assertEquals(drinkCloseDate, bottle.getFinishingDate());
 		Assert.assertEquals(drinkOpenDate, bottle.getOpeningDate());
-		Assert.assertEquals(0, bottle.getQuantity(),0);
+		Assert.assertEquals(0, bottle.getPercentage(),0);
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class BottleTest {
 		Assert.assertEquals(drinkDate, bottle.getFinishingDate());
 		Assert.assertEquals(drinkDate, bottle.getOpeningDate());
 		Assert.assertEquals(bottle.getOpeningDate(), bottle.getFinishingDate());
-		Assert.assertEquals(0, bottle.getQuantity(),0);
+		Assert.assertEquals(0, bottle.getPercentage(),0);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
