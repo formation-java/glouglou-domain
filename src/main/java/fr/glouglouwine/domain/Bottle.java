@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Bottle {
 
-    private long bottleId;
+    private long id;
     private String owner;
     private GrapeTypes grapeType;
     private String domain;
@@ -19,8 +19,8 @@ public class Bottle {
     }
 
     // is the "functional" constructor
-    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, int year) {
-        this.bottleId = bottleId;
+    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year) {
+        this.id = id;
         this.owner = owner;
         this.grapeType = grapeType;
         this.domain = domain;
@@ -29,9 +29,9 @@ public class Bottle {
     }
 
     // is for instanciation from existing entry
-    public Bottle(long bottleId, String owner, GrapeTypes grapeType, String domain, int year, int percentage,
+    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year, int percentage,
                   LocalDateTime openingDate, LocalDateTime finishingDate) {
-        this.bottleId = bottleId;
+        this.id = id;
         this.owner = owner;
         this.grapeType = grapeType;
         this.domain = domain;
@@ -59,8 +59,8 @@ public class Bottle {
         }
     }
 
-    public long getBottleId() {
-        return bottleId;
+    public long getId() {
+        return id;
     }
 
     public String getOwner() {
