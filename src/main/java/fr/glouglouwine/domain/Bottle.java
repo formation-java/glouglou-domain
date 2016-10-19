@@ -4,6 +4,15 @@ import java.time.LocalDateTime;
 
 public class Bottle {
 
+    private long bottleId;
+    private String owner;
+    private GrapeTypes grapeType;
+    private String domain;
+    private String year;
+    private int quantity;
+    private LocalDateTime openingDate;
+    private LocalDateTime finishingDate;
+
     public Bottle() {
     }
 
@@ -27,14 +36,6 @@ public class Bottle {
         this.openingDate = openingDate;
         this.finishingDate = finishingDate;
     }
-
-    private long bottleId;
-    private String owner;
-    private GrapeTypes grapeType;
-    private String domain;
-    private String year;
-    private int quantity;
-    private LocalDateTime openingDate;
 
     public long getBottleId() {
         return bottleId;
@@ -67,8 +68,6 @@ public class Bottle {
     public LocalDateTime getFinishingDate() {
         return finishingDate;
     }
-
-    private LocalDateTime finishingDate;
 
     public void drink(int quantity, LocalDateTime dateTime) {
         if (quantity < 0) {
