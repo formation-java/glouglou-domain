@@ -8,7 +8,7 @@ public class Bottle {
     private String owner;
     private GrapeTypes grapeType;
     private String domain;
-    private int year;
+    private String year;
     private int quantity;
     private LocalDateTime openingDate;
     private LocalDateTime finishingDate;
@@ -18,7 +18,7 @@ public class Bottle {
     }
 
     // is the "functional" constructor
-    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year) {
+    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, String year) {
         this.id = id;
         this.owner = owner;
         this.grapeType = grapeType;
@@ -28,7 +28,7 @@ public class Bottle {
     }
 
     // is for instanciation from existing entry
-    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year, int quantity,
+    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, String year, int quantity,
                   LocalDateTime openingDate, LocalDateTime finishingDate) {
         this.id = id;
         this.owner = owner;
@@ -74,7 +74,7 @@ public class Bottle {
         return domain;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 

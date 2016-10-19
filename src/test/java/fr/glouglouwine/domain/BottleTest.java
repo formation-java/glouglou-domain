@@ -10,7 +10,7 @@ public class BottleTest {
     @Test
     public void testBottle() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
         //Test
         Assert.assertEquals(100, bottle.getQuantity(), 0);
     }
@@ -18,7 +18,7 @@ public class BottleTest {
     @Test
     public void testDrinkConsumein3times() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
 
         LocalDateTime drinkOpenDate = LocalDateTime.now().minusHours(2);
         bottle.drink(20, drinkOpenDate);
@@ -44,7 +44,7 @@ public class BottleTest {
     @Test
     public void testDrinkConsumeAllInOneTime() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
         LocalDateTime drinkDate = LocalDateTime.now().minusHours(2);
         bottle.drink(100, drinkDate);
         //Assert
@@ -57,21 +57,21 @@ public class BottleTest {
     @Test(expected = IllegalArgumentException.class)
     public void testDrinkConsumeToMuch() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
         bottle.drink(200, LocalDateTime.now());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testDrinkConsumeNegative() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
         bottle.drink(-1, LocalDateTime.now());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testDrinkBeforeOpening() throws Exception {
         //Setup
-        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", 2011);
+        Bottle bottle = new Bottle(1, "A", GrapeTypes.CABERNET, "domain", "2011");
         bottle.drink(50, LocalDateTime.now());
         //Test
         bottle.drink(20, LocalDateTime.now().minusMonths(1));
