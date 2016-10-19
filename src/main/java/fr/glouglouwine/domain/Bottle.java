@@ -9,8 +9,7 @@ public class Bottle {
     private GrapeTypes grapeType;
     private String domain;
     private int year;
-    // TODO percentage ?
-    private int percentage;
+    private int quantity;
     private LocalDateTime openingDate;
     private LocalDateTime finishingDate;
 
@@ -25,27 +24,27 @@ public class Bottle {
         this.grapeType = grapeType;
         this.domain = domain;
         this.year = year;
-        this.percentage = 100;
+        this.quantity = 100;
     }
 
     // is for instanciation from existing entry
-    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year, int percentage,
+    public Bottle(long id, String owner, GrapeTypes grapeType, String domain, int year, int quantity,
                   LocalDateTime openingDate, LocalDateTime finishingDate) {
         this.id = id;
         this.owner = owner;
         this.grapeType = grapeType;
         this.domain = domain;
         this.year = year;
-        this.percentage = percentage;
+        this.quantity = quantity;
         this.openingDate = openingDate;
         this.finishingDate = finishingDate;
     }
 
     public void drink(int quantity, LocalDateTime dateTime) {
         if (quantity < 0) {
-            throw new IllegalArgumentException("You can not drink a null or negative percentage of the bottle. Maybe you mean you refilled it");
+            throw new IllegalArgumentException("You can not drink a null or negative quantity of the bottle. Maybe you mean you refilled it");
         }
-        if (this.percentage - quantity < 0) {
+        if (this.quantity - quantity < 0) {
             throw new IllegalArgumentException("You can not drink more than 100% of the bottle");
         }
         if (openingDate == null) {
@@ -53,8 +52,8 @@ public class Bottle {
         } else if (openingDate.isAfter(dateTime)) {
             throw new IllegalArgumentException("You can not have drinked your bottle before his opening");
         }
-        this.percentage = this.percentage - quantity;
-        if (this.percentage == 0) {
+        this.quantity = this.quantity - quantity;
+        if (this.quantity == 0) {
             finishingDate = dateTime;
         }
     }
@@ -79,8 +78,8 @@ public class Bottle {
         return year;
     }
 
-    public double getPercentage() {
-        return percentage;
+    public double getQuantity() {
+        return quantity;
     }
 
     public LocalDateTime getOpeningDate() {
